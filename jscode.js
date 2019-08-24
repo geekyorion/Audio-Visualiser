@@ -21,6 +21,7 @@ function startVisulization() {
     var source = audioCtx.createMediaElementSource(audio);
 
     // create analyser for the frequency data
+    // ftt size is in power of 2
     var analyser = audioCtx.createAnalyser();
     analyser.fftSize = 512;
 
@@ -28,7 +29,7 @@ function startVisulization() {
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
 
-    // buffer length: power of 2 preferred 512, 1024, 2048
+    // buffer length: power of 2, this is half of the ftt size 
     var bufferLength = (analyser.frequencyBinCount) / 2;
     var dataArray = new Uint8Array(bufferLength);
 
@@ -41,6 +42,9 @@ function startVisulization() {
     // connect the gainNode to the audioContext's destination
     gainNode.connect(audioCtx.destination);
 
+    // uncomment this function and comment drawCircle() to see the
+    // output of the this function
+    
     // (function drawLine() {
     //     requestAnimationFrame(drawLine);
     //     height = canvas.height = window.innerHeight;
@@ -76,13 +80,13 @@ function startVisulization() {
     var sliceAngle = 2 * Math.PI / bufferLength;
 
     /*
-        function drawCircle() discription:
+        function drawCircle() description:
         1) height and width should be refreshed at every frame
            userful when user resize the window
         2) get the frequency data from the analyser and put in the dataArray
         3) canvas should be filled for each and every frame with new frequency data
         4) divide 360 degrees in small angles using bufferSize
-        5) Do some math to calculate (x1, y1) and (x2, y2)\
+        5) Do some math to calculate (x1, y1) and (x2, y2)
         6) finally stroke to see the drawing
     */
 
