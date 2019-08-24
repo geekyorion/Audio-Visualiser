@@ -1,0 +1,38 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #fdd, #ddf);
+    min-height: 100vh;
+}
+
+#myCanvas {
+    display: block;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+}
+
+.controls .play {
+    stroke: rgba(255, 0, 0, 0.5);
+    stroke-width: 2;
+    fill: none;
+    transition-duration: .25s;
+}
+
+.controls:hover .play {
+    stroke: red;
+    stroke-width: 3;
+}
+
+.controls .pause {
+    d: path("m40,15 v120 m60,0 l0,-120 l0,0 z");
+}
