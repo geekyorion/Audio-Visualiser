@@ -77,8 +77,6 @@ function startVisulization() {
     //     canvasCtx.stroke();
     // })();
 
-    var sliceAngle = 2 * Math.PI / bufferLength;
-
     /*
         function drawCircle() description:
         1) height and width should be refreshed at every frame
@@ -90,6 +88,8 @@ function startVisulization() {
         6) finally stroke to see the drawing
     */
 
+    var sliceAngle = 2 * Math.PI / bufferLength;
+    
     (function drawCircle() {
         requestAnimationFrame(drawCircle);
         height = canvas.height = window.innerHeight;
@@ -107,7 +107,6 @@ function startVisulization() {
         canvasCtx.beginPath();
 
         var angle = 0;
-        var preX = preY = 0;
 
         for (var i = 0; i < bufferLength; i++) {
             var value = dataArray[i] / 128.0;
@@ -120,11 +119,6 @@ function startVisulization() {
             var y1 = radius * sinAngle + (height / 2) - length * sinAngle * 0.5;
             var x2 = x1 + 2.5 * length * cosAngle;
             var y2 = y1 + 2.5 * length * sinAngle;
-
-            if (i === 0) {
-                preX = x2;
-                preY = y2;
-            }
 
             canvasCtx.moveTo(x1, y1)
             canvasCtx.lineTo(x2, y2);
