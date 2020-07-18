@@ -44,7 +44,7 @@ function startVisulization() {
 
     // uncomment this function and comment drawCircle() to see the
     // output of the this function
-    
+
     // (function drawLine() {
     //     requestAnimationFrame(drawLine);
     //     height = canvas.height = window.innerHeight;
@@ -89,7 +89,7 @@ function startVisulization() {
     */
 
     var sliceAngle = 2 * Math.PI / bufferLength;
-    
+
     (function drawCircle() {
         requestAnimationFrame(drawCircle);
         height = canvas.height = window.innerHeight;
@@ -132,7 +132,7 @@ function startVisulization() {
 // whenever user click on play/pause button
 // it will toggle play/pause class
 function mediaControl(e) {
-    if(userFlag) {
+    if (userFlag) {
         // call startVisulization() when user first click on the play button
         startVisulization();
         userFlag = false;
@@ -140,14 +140,14 @@ function mediaControl(e) {
 
     mediaBtn.classList.toggle('pause');
     var flag = audio.paused;
-    if(flag) {
+    if (flag) {
         audio.play();
     } else {
         audio.pause();
     }
 }
 
-window.onload = function() {
+window.onload = function () {
     // getters: when window is completely loaded
     audio = document.getElementById("myAudio");
     controlBtn = document.getElementById("controlBtn");
@@ -156,4 +156,8 @@ window.onload = function() {
     // start eventListener on the play/pause button
     controlBtn.addEventListener('click', mediaControl);
     userFlag = true;
+
+    audio.onended = () => {
+        mediaBtn.classList.toggle('pause');
+    }
 }
